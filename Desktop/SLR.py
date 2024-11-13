@@ -3,11 +3,12 @@ import numpy as np
 class RegresionLinealSimple:
     def __init__(self):
        
-        self.data = np.array([[651, 23], [762, 26], [856, 30], [1063, 34], [1190, 43], 
-                              [1298, 48], [1421, 52], [1440, 57], [1518, 57]])
+        self.data = np.array([[1, 2], [2, 4], [3, 6], [4, 8], [5, 10], 
+                              [6, 12], [7, 14], [8, 16], [9, 18]])
         self.X = self.data[:, 1] 
         self.y = self.data[:, 0]  
         self.beta1 = None
+        self.beta0 = None
 
     def ajustar_modelo(self):
         X_mean = np.mean(self.X)
@@ -15,6 +16,7 @@ class RegresionLinealSimple:
         
         numerador = np.sum((self.X - X_mean) * (self.y - y_mean))
         denominador = np.sum((self.X - X_mean) ** 2)
+
         self.beta1 = numerador / denominador
         self.beta0 = y_mean - self.beta1 * X_mean
 
@@ -41,7 +43,7 @@ class Main:
         try:
             x_nuevo = float(input("Ingrese el valor de publicidad para predecir las ventas: "))
             prediccion = modelo.predecir(x_nuevo)
-            print(f"La predicción de ventas para publicidad={x_nuevo} es: {prediccion:.2f}")
+            print(f"La predicción de ventas para publicidad {x_nuevo} es: {prediccion:.2f}")
         except ValueError:
             print("Por favor, ingrese un valor numérico válido.")
 
